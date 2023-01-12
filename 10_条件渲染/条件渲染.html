@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+  <meta charset="UTF-8" />
+  <title></title>
+  <!-- 引入vue -->
+  <style>
+    .basic{
+      border: solid;
+      height: 200px;
+      width: 200px;
+    }
+    .happy{
+      background: yellow;
+    }
+    .normal{
+      background: skyblue;
+    }
+    .sad{
+      background: green;
+    }
+    .font1
+    {
+      font-size: xx-large;
+    }
+    .font2{
+      font-weight: 600;
+    }
+    .font3{
+      border-style: dotted dashed solid double;
+    }
+  </style>
+  <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+<!-- 准备一个容器 -->
+<div id="root">
+<!--  使用v-show实现条件渲染-->
+  <div class="basic" :style="font_sty_obj" v-show="true" @click="changeColours"> text  </div> </br></br>
+<!--使用v-if实现条件渲染-->
+  </br></br>
+<!--使用v-if和v-else-if 中间不可以被打断，即元素必须连在一起，中间没有东西-->
+  <div class="basic" :style="font_sty_obj" v-if="n===1" > 1  </div>
+  <div class="basic" :style="font_sty_obj" v-else-if="n===2" > 2  </div>
+  <div class="basic" :style="font_sty_obj" v-else-if="n===3" > 3  </div>
+  <button @click="changeN">点击我，n+1</button>
+
+</div>
+
+<script type="text/javascript">
+  Vue.config.productionTip = false //阻止vue在启动时生成生产提示
+
+  const x = new Vue({
+    el:'#root',//el用于指定当前vue实例为哪个容器服务
+    data:{
+      n:0,
+      mood:'happy',
+      font_sty : ['font1','font2','font3'],
+      obj_sty:{
+        happy:true,
+        font1:true
+      },
+      font_sty_obj:{
+        // 两个单词需要第二个单词大写
+        fontWeight: '900',
+        fontSize: 'xx-large'
+      },
+      bg_sty:{
+        background: 'skyblue'
+      }
+
+
+    },
+    methods:{
+      changeColours(){
+        // 实现点击将类名改成其他样式
+        const arr = ['happy','normal','sad']
+        seed = Math.floor(Math.random()*3)
+        this.mood = arr[seed]
+      },
+      changeColours2(){
+
+      },
+      changeN() {
+        this.n ++;
+      }
+    }
+    ,
+
+  })
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+  <meta charset="UTF-8" />
+  <title></title>
+  <!-- 引入vue -->
+  <style>
+    .basic{
+      border: solid;
+      height: 200px;
+      width: 200px;
+    }
+    .happy{
+      background: yellow;
+    }
+    .normal{
+      background: skyblue;
+    }
+    .sad{
+      background: green;
+    }
+    .font1
+    {
+      font-size: xx-large;
+    }
+    .font2{
+      font-weight: 600;
+    }
+    .font3{
+      border-style: dotted dashed solid double;
+    }
+  </style>
+  <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+<!-- 准备一个容器 -->
+<div id="root">
+<h2>遍历数组</h2>
+  <ul>
+    <li v-for="(p,index) in personArr" :key="index">
+      {{p.name}}-{{p.id}}--{{p.age}}
+    </li>
+  </ul>
+  <h2>遍历对象</h2>
+  <ul>
+    <li v-for="(value,key) in bear">
+      {{key}}-{{value}}
+    </li>
+  </ul>
+  <h2>遍历字符串</h2>
+  <ul>
+    <li v-for="(v,k) of str" :key="k">{{k}}-{{v}}</li>
+  </ul>
+</div>
+
+<script type="text/javascript">
+  Vue.config.productionTip = false //阻止vue在启动时生成生产提示
+
+  const x = new Vue({
+    el:'#root',//el用于指定当前vue实例为哪个容器服务
+    data:{
+      personArr:[
+        {id:'001',name:'熊大',age:'18'},
+        {id:'002',name:'熊二',age:'19'},
+        {id:'003',name:'熊三',age:'20'}
+      ],
+      bear:{
+        id:'001',
+        weight:'500'
+      },
+      str : '正在吃'
+    },
+    methods: {}
+  })
+
+
+</script>
+</body>
+</html>
