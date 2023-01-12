@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>初识vue</title>
+        <!-- 引入vue -->
+        <script type="text/javascript" src="../js/vue.js"></script>
+    </head>
+    <body>
+        <!-- 准备一个容器 -->
+        <div id="root">
+            <h1>hello, {{name}}</h1>
+        </div>
+
+        <script type="text/javascript">
+           let number = 18
+           let bear = {
+                name:'熊',
+                sex:'母'
+           }
+
+           Object.defineProperty(bear,'age',{
+                get(){
+                    console.log('有人读取了bear对象的age属性')
+                    return number
+                },
+                set(value){
+                    console.log('有人修改了age属性,且值为： ',value)
+                    number=value
+                }
+           })
+
+        //    数据代理：通过一个对象代理对另一个对象的操作
+        let obj1 = {x:100}
+        let obj2 = {y:200}
+
+        Object.defineProperty(obj2,'x',{
+            get(){
+                return obj1.x
+            },
+            set(value){
+                obj1.x = value
+            }
+        });
+        </script>
+    </body>
+</html>

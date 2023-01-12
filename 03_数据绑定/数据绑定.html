@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>初识vue</title>
+        <!-- 引入vue -->
+        <script type="text/javascript" src="../js/vue.js"></script>
+    </head>
+    <body>
+        <!-- 准备一个容器 -->
+        <div id="root">
+            <!-- v-bind:value可以简写:value -->
+            单项数据绑定：<input type="text" v-bind:value='name'>
+            <!-- 只能用在输入类，才可以双向数据绑定,双向绑定可以简写v-model= -->
+            双项数据绑定：<input type="text" v-model:value='name'>
+           
+        </div>
+
+        <script type="text/javascript">
+            Vue.config.productionTip = false //阻止vue在启动时生成生产提示
+
+            const x = new Vue({
+                 // mount 挂载
+                // el:'#root' 的简写方法 x.$mount('#root')
+                el:'#root',//el用于指定当前vue实例为哪个容器服务
+                // 不能写箭头函数
+                // data:{
+                //     name:'熊'
+                // }
+                 // data的第二种写法 函数式
+                data:function(){
+                return{
+                    name:'x'
+                }
+            }
+            })
+           
+
+           
+
+
+        </script>
+    </body>
+</html>

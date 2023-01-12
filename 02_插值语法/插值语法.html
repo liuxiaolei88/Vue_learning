@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>初识vue</title>
+        <!-- 引入vue -->
+        <script type="text/javascript" src="../js/vue.js"></script>
+    </head>
+    <body>
+        <!-- 准备一个容器 -->
+        <div id="root">
+            <h1>hello, {{name}}</h1>
+        </div>
+
+        <script type="text/javascript">
+            Vue.config.productionTip = false //阻止vue在启动时生成生产提示
+
+            const x = new Vue({
+                el:'#root',//el用于指定当前vue实例为哪个容器服务
+                data:{
+                    name:'熊'
+                }
+            })
+        </script>
+    </body>
+</html>

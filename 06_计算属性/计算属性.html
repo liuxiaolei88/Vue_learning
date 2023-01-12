@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>初识vue</title>
+        <!-- 引入vue -->
+        <script type="text/javascript" src="../js/vue.js"></script>
+    </head>
+    <body>
+        <!-- 准备一个容器 -->
+        <div id="root">
+          姓：  <input type="text" v-model="fisrtname"></input> <br/><br/>
+          名：  <input type="text" v-model="secondname"></input> <br/><br/>
+          姓名：<span>{{fullname}}</span>
+        </div>
+
+        <script type="text/javascript">
+            Vue.config.productionTip = false //阻止vue在启动时生成生产提示
+
+            const vm = new Vue({
+                el:'#root',//el用于指定当前vue实例为哪个容器服务
+                data:{
+                    fisrtname:'熊',
+                    secondname:'大'
+                },
+                // 计算属性会有缓存
+                computed:{
+                    fullname:{
+                        get(){
+                            // vue自动维护，this指向vm，故可以通过this访问data里的变量
+                            return this.fisrtname + '  ' + this.secondname
+                        }
+                    }
+                }
+            })
+            
+        </script>
+    </body>
+</html>

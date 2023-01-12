@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title></title>
+        <!-- 引入vue -->
+        <style>
+            .basic{
+                border: solid;
+                height: 200px;
+                width: 200px;
+            }
+            .happy{
+                background: yellow;
+            }
+            .normal{
+                background: skyblue;
+            }
+            .sad{
+                background: green;
+            }
+            .font1
+            {
+                font-size: xx-large;
+            }
+            .font2{
+                font-weight: 600;
+            }
+            .font3{
+                border-style: dotted dashed solid double;
+            }
+        </style>
+        <script type="text/javascript" src="../js/vue.js"></script>
+    </head>
+    <body>
+        <!-- 准备一个容器 -->
+        <div id="root">
+            <!-- 绑定样式，字符串写法,适用于类名不确定，需要动态指定 -->
+            <div class="basic happy font3" :class='mood' @click="changeColours"> text  </div> </br></br>
+            <!-- 绑定样式，数组写法，适用于样式个数不确定，名字不确定 -->
+            <div class="basic" :class='font_sty' @click="changeColours2"> text  </div> </br></br>
+            <!-- 绑定样式，对象写法，适用于绑定样式个数确定，名字确定，但是需要动态绑定-->
+            <div class="basic" :class='obj_sty' @click="changeColours2"> text  </div> </br></br>
+        </div>
+
+        <script type="text/javascript">
+            Vue.config.productionTip = false //阻止vue在启动时生成生产提示
+
+            const x = new Vue({
+                el:'#root',//el用于指定当前vue实例为哪个容器服务
+                data:{
+                   mood:'happy',
+                   font_sty : ['font1','font2','font3'],
+                    obj_sty:{
+                       happy:true,
+                        font1:true
+                    }
+
+                },
+                methods:{
+                    changeColours(){
+                        // 实现点击将类名改成其他样式
+                        const arr = ['happy','normal','sad']
+                        seed = Math.floor(Math.random()*3)
+                        this.mood = arr[seed]
+                    },
+                    changeColours2(){
+
+                    }
+                }
+                ,
+
+            })
+
+            
+        </script>
+    </body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>初识vue</title>
+        <!-- 引入vue -->
+        <script type="text/javascript" src="../js/vue.js"></script>
+        <style>
+            .list{
+                width: 200px;
+                height: 200px;
+                background-color: skyblue;
+                overflow: auto;
+            }
+            li{
+                height: 100px;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- 准备一个容器 -->
+        <div id="root">
+            <h1>hello, {{name}}</h1>
+            <button @click="showInfo1">点我提示信息1</button>
+            <!-- $event占位 -->
+            <button @click="showInfo2(666,$event)">点我提示信息2</button>
+            <!-- 事件修饰符，可以取消掉默认事件 -->
+            <a href="https://www.bilibili.com/?spm_id_from=333.337.0.0" @click.prevent="showInfo3">点击提示信息</a>
+           <!-- 为滑动框绑定事件，触发滚轮，触碰事件，回调 -->
+            <ul @scroll="showInfo4" class="list">
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+            </ul>
+            <!-- 若把@scroll改成@wheel.passive,则会优先回调，同时触发事件，不需要等到触发事件结束 -->
+            <input type="text" placeholder="按下回车键提示" @keyup.enter="showInfo5"></input>
+        </div>
+
+        <script type="text/javascript">
+            Vue.config.productionTip = false //阻止vue在启动时生成生产提示
+
+            const x = new Vue({
+                el:'#root',//el用于指定当前vue实例为哪个容器服务
+                data:{
+                    name:'熊'
+                },
+                // 不能写在data里，在data里才会数据劫持和数据代理
+                methods:{
+                
+                    showInfo1(){
+                        alert('嗨1')
+                    },
+                    showInfo2(number){
+                        console.log(number)
+                        alert(number)
+                    },
+                    showInfo3(){
+                        alert("嗨3")
+                    },
+                    showInfo4(){
+                        alert("嗨4")
+                    },
+                    showInfo5(e){
+                        alert(e.target.value)
+                    }
+                }
+            }
+                
+            )
+            
+        </script>
+    </body>
+</html>

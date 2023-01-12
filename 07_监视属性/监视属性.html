@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>初识vue</title>
+        <!-- 引入vue -->
+        <script type="text/javascript" src="../js/vue.js"></script>
+    </head>
+    <body>
+        <!-- 准备一个容器 -->
+        <div id="root">
+            <h1>今天天气很{{weather}},{{x}}</h1>
+            <button @click="changeWeather">点击我变换天气</button>
+        </br></br>
+            <h2>{{number.a}}</h2>
+            <button @click="changeNumbera">点击我变换a数字</button>
+        </br></br>
+            <h2>{{number.b}}</h2>
+            <button @click="changeNumberb">点击我变换b数字</button>
+        </div>
+
+        <script type="text/javascript">
+            Vue.config.productionTip = false //阻止vue在启动时生成生产提示
+
+            const x = new Vue({
+                el:'#root',//el用于指定当前vue实例为哪个容器服务
+                data:{
+                    name:'熊',
+                    snow:'雪',
+                    ishot:true,
+                    issnow:false,
+                    x:0,
+                    // 深度监听
+                    number:{
+                        a:1,
+                        b:2
+                
+                    }
+                },
+                computed:{
+                    weather(){
+                            console.log('1')
+                            if(this.ishot===true){
+                                this.name='炎热'
+                                return this.name
+                            }
+                            else{
+                                this.name='寒冷'
+                                return this.name
+                            }
+                    }
+                      
+                
+                },
+                methods:{
+                    changeWeather(){
+                        // alert(1)
+                        this.ishot = !this.ishot
+                        this.issnow = !this.issnow
+                        console.log(this.hot)
+                        this.x++
+                    },
+                    changeNumbera(){
+                        this.number.a++
+                    },
+                    changeNumberb(){
+                        this.number.b++
+                    }
+
+                },
+                watch:{
+                    issnow:{
+                        handler(newValue,oldValue){
+                            console.log('issnow被修改',newValue,oldValue)
+                        }
+                    },
+                    'number.a':{
+                        handler(newValue,oldValue){
+                            console.log('a的值改变',newValue,oldValue)
+                        }
+                    },
+                    number:{
+                        deep:true,
+                        handler(newValue,oldValue){
+                            console.log('number改变')
+                        }
+                        
+                    }
+                }
+            })
+
+            
+        </script>
+    </body>
+</html>
