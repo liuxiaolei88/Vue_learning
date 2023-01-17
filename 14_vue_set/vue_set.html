@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+  <meta charset="UTF-8" />
+  <title></title>
+  <!-- 引入vue -->
+  <style>
+    .basic{
+      border: solid;
+      height: 200px;
+      width: 200px;
+    }
+    .happy{
+      background: yellow;
+    }
+    .normal{
+      background: skyblue;
+    }
+    .sad{
+      background: green;
+    }
+    .font1
+    {
+      font-size: xx-large;
+    }
+    .font2{
+      font-weight: 600;
+    }
+    .font3{
+      border-style: dotted dashed solid double;
+    }
+  </style>
+  <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+<!-- 准备一个容器 -->
+<div id="root">
+  <!--    v-model="keyword"绑定输入框里的元素-->
+  <h2>名称：{{student.name}}</h2>
+  <h2>学校地址：{{student.address}}</h2>
+  <h2>性别：{{student.sex}}</h2>
+  <h2>朋友</h2>
+  <ul>
+    <li v-for="(f,index) in student.friend" :key="index">
+      {{f.age}}--{{f.name}}
+    </li>
+  </ul>
+<button @click="fuzhi()">点我为性别赋值</button>
+
+
+</div>
+
+<script type="text/javascript">
+  Vue.config.productionTip = false //阻止vue在启动时生成生产提示
+  // Vue.set中，只能放入对象中已经有的属性，不能给没有的属性赋值
+  const vm = new Vue({
+    el:'#root',//el用于指定当前vue实例为哪个容器服务
+    data:{
+      student:{
+        name:'熊',
+        address:'熊窝',
+        sex:'',
+        age:{
+          rage:40,
+          sage:18
+        },
+        friend:[
+          {name:'jerry',age:35},
+          {name:'tony',age:36}
+        ]
+      }
+    },
+    methods:{
+      fuzhi(){
+        this.$set(this.student,'sex','女')
+      }
+    }
+    // 如果用的是computed 那么相当于维护了一个带有计算属性的变量
+  })
+
+
+</script>
+</body>
+</html>
