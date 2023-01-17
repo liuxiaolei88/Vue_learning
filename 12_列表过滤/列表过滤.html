@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8" />
+    <title></title>
+    <!-- 引入vue -->
+    <style>
+        .basic{
+            border: solid;
+            height: 200px;
+            width: 200px;
+        }
+        .happy{
+            background: yellow;
+        }
+        .normal{
+            background: skyblue;
+        }
+        .sad{
+            background: green;
+        }
+        .font1
+        {
+            font-size: xx-large;
+        }
+        .font2{
+            font-weight: 600;
+        }
+        .font3{
+            border-style: dotted dashed solid double;
+        }
+    </style>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+<!-- 准备一个容器 -->
+<div id="root">
+    <h2>人员列表</h2>
+<!--    v-model="keyword"绑定输入框里的元素-->
+    <input type="text" placeholder="请输入姓名" v-model="keyword">
+    <ul>
+        <li v-for="(p,index) of filled">{{p.id}}-{{p.name}}-{{p.age}}</li>
+    </ul>
+    <button @click="sortType = 0">按年龄升序</button>
+    <button @click="sortType = 1">按年龄降序</button>
+    <button @click="sortType = 2">原顺序</button>
+</div>
+
+<script type="text/javascript">
+    Vue.config.productionTip = false //阻止vue在启动时生成生产提示
+
+    const x = new Vue({
+        el:'#root',//el用于指定当前vue实例为哪个容器服务
+        data:{
+            keyword: '',
+            personArr:[
+                {id:'001',name:'熊大东',age:'18'},
+                {id:'002',name:'熊大西',age:'19'},
+                {id:'003',name:'熊小东',age:'20'}
+            ],
+            filled:[]
+        },
+
+        watch:{
+            keyword:{
+                immediate:true,
+                handler(val){
+                    this.filled = this.personArr.filter((p)=>{
+                        return p.name.indexOf(val) !==-1
+                    })
+                }
+            }
+        }
+    })
+
+
+</script>
+</body>
+</html>
