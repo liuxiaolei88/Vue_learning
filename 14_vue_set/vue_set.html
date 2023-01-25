@@ -53,6 +53,7 @@
 <script type="text/javascript">
   Vue.config.productionTip = false //阻止vue在启动时生成生产提示
   // Vue.set中，只能放入对象中已经有的属性，不能给没有的属性赋值
+  // vue中，数组中的元素没有 set和get，所以直接按索引值修改数组不能引起页面变换
   const vm = new Vue({
     el:'#root',//el用于指定当前vue实例为哪个容器服务
     data:{
