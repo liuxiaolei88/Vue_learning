@@ -9,7 +9,7 @@
     v-text: 展示文本，但不能解析标签
     v-html: 解析标签，但会有安全问题
     v-clock: Vue实例创建完毕并接管容器后，会删掉v-clock属性。当网速过慢时，配合css隐藏样式，不让未解析的模板出现
-
+    v-once: 在初次动态渲染后视为静态内容，后续不再更新
 
 -->
 
@@ -29,6 +29,9 @@
     <h2 v-text="msg"></h2>
     <h2 v-text="hi"></h2>
     <h2 v-html="hi"></h2>
+    <h3 v-once>初始值{{n}}</h3>
+    <h3>n={{n}}</h3>
+    <button @click="n++">点我n+1</button>
 </div>
 
 
@@ -42,7 +45,8 @@
         el: '#root',
         data: {
             msg:'haha',
-            hi:'<h1 v-text="msg">hai</h1>'
+            hi:'<h1 v-text="msg">hai</h1>',
+            n:0
         },
 
     })
