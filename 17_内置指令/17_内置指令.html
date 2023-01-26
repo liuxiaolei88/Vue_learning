@@ -7,6 +7,9 @@
     v-else：条件渲染，动态控制结点是否存在
     v-show：条件渲染，动态控制结点是否展示
     v-text: 展示文本，但不能解析标签
+    v-html: 解析标签，但会有安全问题
+    v-clock: Vue实例创建完毕并接管容器后，会删掉v-clock属性。当网速过慢时，配合css隐藏样式，不让未解析的模板出现
+
 
 -->
 
@@ -24,6 +27,8 @@
 <!--    hai不生效，msg会全部替换-->
     <h2 v-text="msg">hai</h2>
     <h2 v-text="msg"></h2>
+    <h2 v-text="hi"></h2>
+    <h2 v-html="hi"></h2>
 </div>
 
 
@@ -36,8 +41,8 @@
     new Vue({
         el: '#root',
         data: {
-
-            msg:'haha'
+            msg:'haha',
+            hi:'<h1 v-text="msg">hai</h1>'
         },
 
     })
