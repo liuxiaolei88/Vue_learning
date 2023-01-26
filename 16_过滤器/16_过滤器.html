@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <script type="text/javascript" src="../js/dayjs.min.js"></script>
+</head>
+<body>
+<div id="root">
+    <h2>显示格式化后时间</h2>
+    <h3>现在是：{{fmtTime}}</h3>
+    <!--        过滤器传参-->
+    <h3>现在是：{{time | timeFormater('{YYYY} MM-DD')}}</h3>
+    <!--        多个过滤器,依次传参-->
+    <h3>现在是：{{time | timeFormater('{YYYY} MM-DD') | mySlice}}</h3>
+</div>
+
+<div id="root2">
+    <h2>容器2</h2>
+    <h3>{{msg | mySlice}}</h3>
+
+</div>
+
+</body>
+<script type="text/javascript">
+
+    Vue.config.productionTip = false
+    // 全局过滤器
+    Vue.filter('mySlice', function (val) {
+        return val.slice(0, 5)
+    })
+
+    new Vue({
+        el: '#root',
+        data: {
+            time: 1621561377603
+        },
+        computed: {
+            fmtTime() {
+                return dayjs().format('{YYYY} MM-DD HH:mm:ss')
+            }
+        },
+        // 局部过滤器
+        // 过滤器不改变原本数据，而是产生新的数据
+        filters: {
+            // 第一个参数默认是time
+            timeFormater(val, str) {
+                return dayjs(val).format(str)
+            },
+        }
+    })
+    new Vue({
+        el: '#root2',
+        data: {
+            msg: 'hhhhhhhhhhhhhhhhhhh'
+        }
+    })
+</script>
+</html>
