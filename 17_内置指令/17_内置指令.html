@@ -1,0 +1,46 @@
+<!--
+    v-bind : 单向绑定解析分析式，可简写为：xxxx
+    v-model: 双向数据绑定
+    v-for: 遍历数组、对象、字符串
+    v-on: 绑定事件监听，可简写成@
+    v-if: 条件渲染，动态控制结点是否存在
+    v-else：条件渲染，动态控制结点是否存在
+    v-show：条件渲染，动态控制结点是否展示
+    v-text: 展示文本，但不能解析标签
+
+-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <script type="text/javascript" src="../js/dayjs.min.js"></script>
+</head>
+<body>
+<div id="root">
+<!--    hai不生效，msg会全部替换-->
+    <h2 v-text="msg">hai</h2>
+    <h2 v-text="msg"></h2>
+</div>
+
+
+
+</body>
+<script type="text/javascript">
+
+    Vue.config.productionTip = false
+
+    new Vue({
+        el: '#root',
+        data: {
+
+            msg:'haha'
+        },
+
+    })
+
+</script>
+</html>
