@@ -1,0 +1,70 @@
+<!--
+  指令名字如果是多个单词，要小写，用-连接。在directives名字要用‘’
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script type="text/javascript" src="../js/vue.js"></script>
+  <script type="text/javascript" src="../js/dayjs.min.js"></script>
+</head>
+<body>
+<div id="root">
+  <h2>当前的n值是：<span v-text="n"></span></h2>
+  <h2>放大10倍的n值是：<span v-big="n"></span></h2>
+  <button @click="n++">点我n+1</button>
+
+  <input type="text" v-fbind:value="n">
+</div>
+
+</body>
+<script type="text/javascript">
+
+  Vue.config.productionTip = false
+  // 全局自定指令
+  // Vue.directive(名，函数)
+
+
+  new Vue({
+    el: '#root',
+    data: {
+      n:1
+    },
+
+    directives:{
+      // element：真实dom对象,binding：绑定对象
+
+
+      // 方法一：函数写法
+      // big函数什么时候被调用？1：指令与元素一上来成功绑定。2：指令所在的模板倍重新解析时
+      'big'(element,binding){
+        element.innerText = binding.value *10
+      },
+
+
+      // 方法二：对象写法
+      // 实现定义一个fbind指令，可以把绑定的input框默认获取焦点
+      fbind:{
+        // 指令与元素成功绑定时（一上来）
+        bind(element,binding){
+          element.value = binding.value
+        },
+        // 指令所在元素被插入页面时
+        inserted(element,binding){
+          element.focus()
+        },
+        // 指令所在模板被重新解析时
+        update(element,binding){
+          element.value = binding.value
+          element.focus()
+        }
+
+      }
+    }
+
+  })
+
+</script>
+</html>
