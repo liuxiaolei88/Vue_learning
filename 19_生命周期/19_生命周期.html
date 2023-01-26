@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <script type="text/javascript" src="../js/dayjs.min.js"></script>
+</head>
+<body>
+<div id="root">
+    <h2 :style="{opacity:opacity}"> hi 熊</h2>
+</div>
+
+
+</body>
+<script type="text/javascript">
+
+    Vue.config.productionTip = false
+
+
+    new Vue({
+        el: '#root',
+        data: {
+            opacity: 1
+        },
+        methods: {
+            change() {
+                setInterval(() => {
+                    this.opacity -= 0.01
+                    if (this.opacity <= 0) {
+                        this.opacity = 1
+                    }
+                }, 16)
+            }
+        },
+        // vue完成模板解析并把初始的真实DOM放入页面后（挂在完毕）调用mounted
+        mounted(){
+          setInterval(() => {
+            this.opacity -= 0.01
+            if (this.opacity <= 0) {
+              this.opacity = 1
+            }
+          }, 16)
+        }
+    })
+
+</script>
+</html>
