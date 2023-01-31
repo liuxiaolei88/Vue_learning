@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script type="text/javascript" src="../js/vue.js"></script>
+  <script type="text/javascript" src="../js/dayjs.min.js"></script>
+</head>
+<body>
+<div id="root">
+<app></app>
+</div>
+
+
+
+</body>
+<script type="text/javascript">
+  Vue.config.productionTip = false
+  const hello = Vue.extend({//组件定义时，一定不要写el配置项，因为最终所有的组件都由vm管理
+    template:`
+            <div>
+            <h1>你好！</h1>
+            </div>
+        `,
+
+  })
+
+  const school = Vue.extend({//组件定义时，一定不要写el配置项，因为最终所有的组件都由vm管理
+    template:`
+            <div>
+            <hello></hello>
+            <h2>学校名称：{{schoolName}}</h2>
+            <h2>学校地址：{{address}}</h2>
+            </div>
+        `,
+    data(){
+      return{
+        schoolName:'狗熊岭',
+        address:'狗熊岭一号',
+      }
+
+    },
+    components:{
+      hello
+    }
+  })
+  const student = Vue.extend({//组件定义时，一定不要写el配置项，因为最终所有的组件都由vm管理
+    template:`
+          <div>
+          <h2>学生姓名：{{studentName}}</h2>
+          <h2>年龄: {{age}}</h2>
+          </div>
+
+        `,
+    data(){
+      return{
+        studentName:'熊大',
+        age:'18'
+      }
+
+    }
+  })
+
+  const app = Vue.extend({//组件定义时，一定不要写el配置项，因为最终所有的组件都由vm管理
+    template:`
+      <div>
+      <school></school>
+      <student></student>
+      </div>
+
+        `,
+    components:{
+      school,
+      student
+    }
+  })
+
+  new Vue({
+    el: '#root',
+    components:{
+      app
+    }
+  })
+
+</script>
+</html>
