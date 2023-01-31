@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <script type="text/javascript" src="../js/dayjs.min.js"></script>
+</head>
+<body>
+<div id="root">
+    <school></school>
+    <hr>
+    <student></student>
+    <hr>
+    <student></student>
+</div>
+
+
+
+</body>
+<script type="text/javascript">
+    //创建组件
+
+    Vue.config.productionTip = false
+
+    // step1:定义
+    const school = Vue.extend({//组件定义时，一定不要写el配置项，因为最终所有的组件都由vm管理
+        template:`
+            <div>
+            <h2>学校名称：{{schoolName}}</h2>
+            <h2>学校地址：{{address}}</h2>
+            </div>
+        `,
+        data(){
+            return{
+                schoolName:'狗熊岭',
+                address:'狗熊岭一号',
+            }
+
+        }
+    })
+    const student = Vue.extend({//组件定义时，一定不要写el配置项，因为最终所有的组件都由vm管理
+        template:`
+          <div>
+          <h2>学生姓名：{{studentName}}</h2>
+          <h2>年龄: {{age}}</h2>
+          </div>
+
+        `,
+        data(){
+            return{
+                studentName:'熊大',
+                age:'18'
+            }
+
+        }
+    })
+
+    // step2:注册
+    new Vue({
+        el: '#root',
+        components:{
+            school:school,
+            student:student
+        }
+
+    })
+
+</script>
+</html>
