@@ -1,20 +1,21 @@
 
 <template>
   <div class="demo">
-      <h2>学校名称：{{name|mySlice}}</h2>
+      <h2>学生名称：{{name}}</h2>
       <h2>学校地址：{{address}}</h2>
-      <button @click="showName">点击我提示学校名称</button>
+      <br><br>
+      <button @click="showName">点击我提示学生名称</button>
   </div>
 </template>
 
 <script>
-import {mixN} from '../mixn'
-// 引入一个混合
+import {mixN} from "@/mixn";
+
 export default {
-   name:'SchoolMy',//最好和文件名一直
+   name:'StudentMy',//最好和文件名一直
     data(){
      return{
-       name:'熊熊幼儿园',
+       name:'熊熊',
        address:'狗熊岭'
      }
     },
@@ -26,7 +27,6 @@ export default {
     // },
     // 传递参数
     // props:['schoolName','address']
-
   }
 
 </script>
