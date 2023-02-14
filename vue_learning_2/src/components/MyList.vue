@@ -1,5 +1,9 @@
 <template>
 <!--哈哈哈哈-->
+  <div>
+    <MyItem></MyItem>
+  </div>
+
 </template>
 
 <script>
